@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import $CherryEngine from '../engine/Engine.js'
+
+        const cherryDebugger = new $CherryEngine(true)
+
+        $CherryEngine.Create_$Rect('rect1', 90, 70)
+        $CherryEngine.Create_$Circle('circle1', 100, 10)
+        $CherryEngine.Set_$Border('circle1', 10, '#fff', 'solid', 10)
+        $CherryEngine.MoveX('circle1', 70)
+    </script>
+</body>
+</html>
