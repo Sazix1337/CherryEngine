@@ -7,7 +7,7 @@ export class Request {
         })
     }
 
-    static $Get(url, data = {}) {
+    static $Get(url) {
         return new Promise(resolve => {
             fetch(url, { method: 'GET' }).then(response => {
                 resolve(response)
