@@ -70,7 +70,7 @@ borderColor - the color of border<br>
 borderType - the type of border(css)<br>
 background - the color of background<br><br><br>
 
-**(GameObjectID, x = 0, y = 0)** - Moves \*GameObject to x, and y position<br>
+**Move(GameObjectID, x = 0, y = 0)** - Moves \*GameObject to x, and y position<br>
 GameObjectID - id of object<br>
 x - x position. (default 0)<br>
 y - y position. (default 0)
