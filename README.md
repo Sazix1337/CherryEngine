@@ -144,4 +144,5 @@ data - the data of request(default: {})
 
 **$Get(url)** - Making get request<br>
 url - the url for request<br>
+<br>
 **Co-Authored by: Kolyah35**
