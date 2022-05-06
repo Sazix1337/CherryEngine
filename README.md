@@ -41,7 +41,7 @@ color - color in hex
 GameObjectID - id of object<br>
 x - x position. (default 0)
 
-**MoveY(GameObjectID, Y = 0)** - Move to Y position<br>
+**MoveY(GameObjectID, y = 0)** - Move to Y position<br>
 GameObjectID - id of object<br>
 y - y position. (default 0)
 
