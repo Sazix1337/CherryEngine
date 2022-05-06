@@ -11,8 +11,8 @@ In Engine.js you should fill APPLICATION_INFORMATION array required information.
 ## Constructor<br>
 **constuctor** accepts only 1 parameter, thats the debug mode, value can be false or true<br><br>
 ## Functions <br><br>
-**Create_$Object(GameObjectID, type, textContent, x = 0, y = 0, sourceURL, color = "#000000")** - Creates an object<br>
-
+**Create_$Object(SceneID, GameObjectID, type, textContent, x = 0, y = 0, sourceURL, color = "#000000")** - Creates an object<br>
+SceneID - id of scene<br>
 GameObjectID - id of object<br>
 type - object type. Now engine has only three object types Text, Sprite and Image.<br>
 textContent - this var stores text that will be diplayed in text object type.<br>
@@ -21,7 +21,7 @@ y - y position. (default 0)<br>
 sourceURL - picture URL.<br>
 color - HEX color of object.
 
-**Set_$Border(SceneID, GameObjectID, borderSize, borderColor, borderType, borderRadius)** - Sets border<br>
+**Set_$Border(GameObjectID, borderSize, borderColor, borderType, borderRadius)** - Sets border<br>
 
 GameObjectID - id of object<br>
 borderSize - border size<br>
@@ -45,8 +45,9 @@ x - x position. (default 0)
 GameObjectID - id of object<br>
 y - y position. (default 0)
 
-**Create_$Rect(GameObjectID, x = 0, y = 0, height = '100px', width = '100px', borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000')** - draw a rect<br>
+**Create_$Rect(SceneID, GameObjectID, x = 0, y = 0, height = '100px', width = '100px', borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000')** - draw a rect<br>
 
+SceneID - id of scene<br>
 GameObjectID - id of object<br>
 x - x position. (default 0)<br>
 y - y position. (default 0)<br>
@@ -57,8 +58,8 @@ borderColor - the color of border<br>
 borderType - the type of border(css)<br>
 background - the color of background
 
-**Create_$Circle(GameObjectID, x = 0, y = 0, height = '100px', width = '100px', borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000')** - draw a circle<br>
-
+**Create_$Circle(SceneID, GameObjectID, x = 0, y = 0, height = '100px', width = '100px', borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000')** - draw a circle<br>
+SceneID - id of scene<br>
 GameObjectID - id of object<br>
 x - x position. (default 0)<br>
 y - y position. (default 0)<br>
@@ -69,78 +70,78 @@ borderColor - the color of border<br>
 borderType - the type of border(css)<br>
 background - the color of background<br><br><br>
 
-**(GameObjectID, x = 0, y = 0)** - Moves \*GameObject to x, and y position
+**(GameObjectID, x = 0, y = 0)** - Moves \*GameObject to x, and y position<br>
 GameObjectID - id of object<br>
 x - x position. (default 0)<br>
 y - y position. (default 0)
 
-**getByStaticId(staticID)** - Gets \*GameObject by static id(data-fixedid attr.)
+**getByStaticId(staticID)** - Gets \*GameObject by static id(data-fixedid attr.)<br>
 staticID - The static id of \*GameObject
 
-**Delete_$Object(GameObjectID)** - Delete the \*GameObject
+**Delete_$Object(GameObjectID)** - Delete the \*GameObject<br>
 GameObjectID - id of object
 
-**Object_$Rotate(GameObjectID, deg)** - Rotates object
+**Object_$Rotate(GameObjectID, deg)** - Rotates object<br>
 GameObjectID - id of object<br>
 deg - Degrees of rotation
 
-**Object_$RotateY(GameObjectID, deg)** - Rotates object to Y
+**Object_$RotateY(GameObjectID, deg)** - Rotates object to Y<br>
 GameObjectID - id of object<br>
 deg - Degrees of rotation
 
-**Object_$RotateX(GameObjectID, deg)** - Rotates object to X
+**Object_$RotateX(GameObjectID, deg)** - Rotates object to X<br>
 GameObjectID - id of object<br>
 deg - Degrees of rotation
 
-**Object_$RotateZ(GameObjectID, deg)** - Rotates object to Z
+**Object_$RotateZ(GameObjectID, deg)** - Rotates object to Z<br>
 GameObjectID - id of object<br>
 deg - Degrees of rotation
 
-**Object_$Scale(GameObjectID, size)** - Scales the \*GameObject
+**Object_$Scale(GameObjectID, size)** - Scales the \*GameObject<br>
 GameObjectID - id of object<br>
 size - the size of scale(default: 1)
 
-**Object_$SetTransTime(GameObjectID, ms)** - Sets the transition time to \*GameObject
+**Object_$SetTransTime(GameObjectID, ms)** - Sets the transition time to \*GameObject<br>
 GameObjectID - id of object<br>
 ms - the time in ms
 
-**Object_$Layer(GameObjectID, ObjectLayer)** - Change layer position for \*GameObject
+**Object_$Layer(GameObjectID, ObjectLayer)** - Change layer position for \*GameObject<br>
 GameObjectID - id of object<br>
 ObjectLayer - the layer for \*GameObject(default: 0)
 
 # Events.js
-**OnObjectClick(GameObjectID, callback)** - Sets the listener for clicking the \*GameObject
+**OnObjectClick(GameObjectID, callback)** - Sets the listener for clicking the \*GameObject<br>
 GameObjectID - The id of \*GameObject<br>
 callback - function of event
 
-**OnMouseObjectHover(GameObjectID, callback)** - Sets the listener for mouse hover on  \*GameObject
+**OnMouseObjectHover(GameObjectID, callback)** - Sets the listener for mouse hover on  \*GameObject<br>
 GameObjectID - The id of \*GameObject<br>
 callback - function of event
 
-**OnMouseObjectExit(GameObjectID, callback)** - Sets the listener for mouse leave from \*GameObject
+**OnMouseObjectExit(GameObjectID, callback)** - Sets the listener for mouse leave from \*GameObject<br>
 GameObjectID - The id of \*GameObject<br>
 callback - function of event
 
 # Scene.js
-**Scene_$Create(SceneID, width, height, x, y)** - Creates an new Scene for game
+**Scene_$Create(SceneID, width, height, x, y)** - Creates an new Scene for game<br>
 SceneID - the id of scene(string)<br>
 width - the width of scene<br>
 height - the height of scene<br>
 x - x position of scene<br>
 y - y position of scene
 
-**Scene_$Delete(SceneID)**  - Deletes the scene
+**Scene_$Delete(SceneID)**  - Deletes the scene<br>
 SceneID - the id of scene(string)
 
-**Scene_$Layer(SceneID, SceneLayer)** - Sets the layer of scene
+**Scene_$Layer(SceneID, SceneLayer)** - Sets the layer of scene<br>
 SceneID - the id of scene(string)<br>
 SceneLayer - The layer of scene(default: 0)
 
 # Requests.js
-**$Post(url, data = {})** - Making post request
+**$Post(url, data = {})** - Making post request<br>
 url - the url for request<br>
 data - the data of request(default: {})
 
-**$Get(url)** - Making get request
-url - the url for request
+**$Get(url)** - Making get request<br>
+url - the url for request<br>
 **Co-Authored by: Kolyah35**
