@@ -1,8 +1,8 @@
 # CherryEngine
 ***The 2D Game Engine written on JavaScript.***
 
-# NEW UPDATE
-***Version 1.1***
+# NEW UPDATE<br>
+***Version 1.1***<br>
 **Added:** `Events.js`, `Requests.js`, `Scene.js`, `types/Picture.js`, `types/Sprite.js`, `Text.js`, `errors/GameObjectError.js`, `errors/SceneObjectError.js`
 
 # Documentation<br>
@@ -21,7 +21,7 @@ y - y position. (default 0)<br>
 sourceURL - picture URL.<br>
 color - HEX color of object.
 
-**Set_$Border(GameObjectID, borderSize, borderColor, borderType, borderRadius)** - Sets border<br>
+**Set_$Border(SceneID, GameObjectID, borderSize, borderColor, borderType, borderRadius)** - Sets border<br>
 
 GameObjectID - id of object<br>
 borderSize - border size<br>
@@ -68,4 +68,79 @@ borderSize - the size of border in px<br>
 borderColor - the color of border<br>
 borderType - the type of border(css)<br>
 background - the color of background<br><br><br>
+
+**(GameObjectID, x = 0, y = 0)** - Moves \*GameObject to x, and y position
+GameObjectID - id of object<br>
+x - x position. (default 0)<br>
+y - y position. (default 0)
+
+**getByStaticId(staticID)** - Gets \*GameObject by static id(data-fixedid attr.)
+staticID - The static id of \*GameObject
+
+**Delete_$Object(GameObjectID)** - Delete the \*GameObject
+GameObjectID - id of object
+
+**Object_$Rotate(GameObjectID, deg)** - Rotates object
+GameObjectID - id of object<br>
+deg - Degrees of rotation
+
+**Object_$RotateY(GameObjectID, deg)** - Rotates object to Y
+GameObjectID - id of object<br>
+deg - Degrees of rotation
+
+**Object_$RotateX(GameObjectID, deg)** - Rotates object to X
+GameObjectID - id of object<br>
+deg - Degrees of rotation
+
+**Object_$RotateZ(GameObjectID, deg)** - Rotates object to Z
+GameObjectID - id of object<br>
+deg - Degrees of rotation
+
+**Object_$Scale(GameObjectID, size)** - Scales the \*GameObject
+GameObjectID - id of object<br>
+size - the size of scale(default: 1)
+
+**Object_$SetTransTime(GameObjectID, ms)** - Sets the transition time to \*GameObject
+GameObjectID - id of object<br>
+ms - the time in ms
+
+**Object_$Layer(GameObjectID, ObjectLayer)** - Change layer position for \*GameObject
+GameObjectID - id of object<br>
+ObjectLayer - the layer for \*GameObject(default: 0)
+
+# Events.js
+**OnObjectClick(GameObjectID, callback)** - Sets the listener for clicking the \*GameObject
+GameObjectID - The id of \*GameObject<br>
+callback - function of event
+
+**OnMouseObjectHover(GameObjectID, callback)** - Sets the listener for mouse hover on  \*GameObject
+GameObjectID - The id of \*GameObject<br>
+callback - function of event
+
+**OnMouseObjectExit(GameObjectID, callback)** - Sets the listener for mouse leave from \*GameObject
+GameObjectID - The id of \*GameObject<br>
+callback - function of event
+
+# Scene.js
+**Scene_$Create(SceneID, width, height, x, y)** - Creates an new Scene for game
+SceneID - the id of scene(string)<br>
+width - the width of scene<br>
+height - the height of scene<br>
+x - x position of scene<br>
+y - y position of scene
+
+**Scene_$Delete(SceneID)**  - Deletes the scene
+SceneID - the id of scene(string)
+
+**Scene_$Layer(SceneID, SceneLayer)** - Sets the layer of scene
+SceneID - the id of scene(string)<br>
+SceneLayer - The layer of scene(default: 0)
+
+# Requests.js
+**$Post(url, data = {})** - Making post request
+url - the url for request<br>
+data - the data of request(default: {})
+
+**$Get(url)** - Making get request
+url - the url for request
 **Co-Authored by: Kolyah35**
