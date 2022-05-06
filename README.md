@@ -1,7 +1,9 @@
 # CherryEngine
 ***The 2D Game Engine written on JavaScript.***
 
-***Version 1.0***
+# NEW UPDATE
+***Version 1.1***
+**Added:** `Events.js`, `Requests.js`, `Scene.js`, `types/Picture.js`, `types/Sprite.js`, `Text.js`, `errors/GameObjectError.js`, `errors/SceneObjectError.js`
 
 # Documentation<br>
 First of all, you should import ../engine/Engine.js file.<br>
