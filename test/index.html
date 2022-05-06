@@ -9,13 +9,14 @@
 <body>
     <script type="module">
         import $CherryEngine from '../engine/Engine.js'
+        import { Events } from '../engine/Events.js'
+        import { Request } from '../engine/Requests.js'
 
-        const cherryDebugger = new $CherryEngine(true)
-
-        $CherryEngine.Create_$Rect('rect1', 90, 70)
-        $CherryEngine.Create_$Circle('circle1', 100, 10)
-        $CherryEngine.Set_$Border('circle1', 10, '#fff', 'solid', 10)
-        $CherryEngine.MoveX('circle1', 70)
+        const cherryDebugger = new $CherryEngine()
+        $CherryEngine.Create_$Rect('cherry', 'dsdsd', 100, 10, 100, 100)
+        $CherryEngine.Set_$Border('dsdsd', 10, '#fff', 'solid', 0, 50)
+        $CherryEngine.Create_$Rect('cherry', 'dsdsdw', 100, -5, 100, 100)
+        $CherryEngine.Object_$Layer('dsdsd', 13)
     </script>
 </body>
 </html>
