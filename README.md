@@ -7,7 +7,7 @@
 
 # Documentation<br>
 First of all, you should import ../engine/Engine.js file.<br>
-In Engine.js you should fill APPLICATION_INFORMATION array required information.<br><br>
+In Engine.js you should fill APPLICATION_INFORMATION array required information.(not working yet)<br><br>
 ## Constructor<br>
 **constuctor** accepts only 1 parameter, thats the debug mode, value can be false or true<br><br>
 ## Functions <br><br>
