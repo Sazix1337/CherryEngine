@@ -1,5 +1,5 @@
 # CherryEngine
-***The 2D Game Engine written on JavaScript.***
+***The 2D Game Engine written in JavaScript.***
 
 # NEW UPDATE<br>
 ***Version 1.1***<br>
