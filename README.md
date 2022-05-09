@@ -2,8 +2,9 @@
 ***The 2D Game Engine written in JavaScript.***
 
 # NEW UPDATE<br>
-***Version 1.1***<br>
-**Added:** `Events.js`, `Requests.js`, `Scene.js`, `types/Picture.js`, `types/Sprite.js`, `Text.js`, `errors/GameObjectError.js`, `errors/SceneObjectError.js`
+***Version 1.2***<br>
+**Added:** `TypeObjectError.js`
+**Changed:** static methods are not static now, you should call method from class object
 
 # Documentation<br>
 First of all, you should import ../engine/Engine.js file.<br>
