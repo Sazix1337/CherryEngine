@@ -13,10 +13,12 @@
         import { Request } from '../engine/Requests.js'
 
         const cherryDebugger = new $CherryEngine()
-        $CherryEngine.Create_$Rect('cherry', 'dsdsd', 100, 10, 100, 100)
-        $CherryEngine.Set_$Border('dsdsd', 10, '#fff', 'solid', 0, 50)
-        $CherryEngine.Create_$Rect('cherry', 'dsdsdw', 100, -5, 100, 100)
-        $CherryEngine.Object_$Layer('dsdsd', 13)
+        cherryDebugger.APPLICATION_INFO.Heading = 'Hello World'
+
+        cherryDebugger.Create_$Rect('cherry', 'dsdsd', 100, 10, 100, 100)
+        cherryDebugger.Set_$Border('dsdsd', 10, '#fff', 'solid', 0, 50)
+        cherryDebugger.Create_$Rect('cherry', 'dsdsdw', 100, -5, 100, 100)
+        cherryDebugger.Object_$Layer('dsdsd', 13)
     </script>
 </body>
 </html>

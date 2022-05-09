@@ -1,5 +1,6 @@
-import { GameObjectError } from "./errors/GameObjectError.js"
+﻿import { GameObjectError } from "./errors/GameObjectError.js"
 import { SceneObjectError } from "./errors/SceneObjectError.js"
+import { TypeObjectError } from "./errors/TypeObjectError.js"
 import { Image } from "./types/Picture.js"
 import { Sprite } from "./types/Sprite.js"
 import { Text } from "./types/Text.js"
@@ -46,7 +47,7 @@ class $CherryEngine {
             document.title = this.APPLICATION_INFO.Heading
         }
         if (this.APPLICATION_SETTINGS.ResolutionHeight === window.innerHeight && this.APPLICATION_SETTINGS.ResolutionWidth === window.innerWidth) {
-            
+
         }
         document.body.insertBefore(applicationWindow, app_node)
 
@@ -54,15 +55,31 @@ class $CherryEngine {
             this.$MouseX = Math.floor(event.clientX)
             this.$MouseY = Math.floor(event.clientY)
         })
+        if (this.APPLICATION_INFO.LANG.toLocaleLowerCase() === "russian") {
+            document.querySelector('html').lang = 'ru'
+            const charset = document.createElement('meta')
+            charset.setAttribute('id', 'cherry-charset')
+            charset.setAttribute('charset', 'utf-8')
+            const charsetNode = document.getElementById('cherry-charset')
+            document.head.insertBefore(charset, charsetNode)
+        } else {
+            document.querySelector('html').lang = 'en'
+        }
 
         if (debug) {
             this.APPLICATION_SETTINGS.debugger = debug
             console.log(this.$MouseX, this.$MouseY, this.APPLICATION_INFO, this.APPLICATION_SETTINGS)
         }
+
+        return this
     }
 
-    static Create_$Object(SceneID, GameObjectID, SpriteObjectID, type, textContent, x = 0, y = 0, sourceURL, color = "#000000") {
-        SceneObjectError(SceneID)
+    Create_$Object(SceneID, GameObjectID, SpriteObjectID, type, textContent, x = 0, y = 0, sourceURL, color = "#000000") {
+        const SceneObject = document.getElementById(SceneID)
+        if (!SceneObject) {
+            SceneObjectError(SceneID)
+            return
+        }
         if (type.toLowerCase() === "text") {
             Text(SceneID, GameObjectID, x, y, textContent, color)
         } else if (type.toLowerCase() === "sprite") {
@@ -70,53 +87,70 @@ class $CherryEngine {
         } else if (type.toLowerCase() === "image") {
             Image(SceneID, GameObjectID, sourceURL, x, y)
         } else {
-            console.error(`Type of *GameObject(Text, Sprite, Image) does not have the "${type}" type`)
+            TypeObjectError(type)
         }
     }
 
-    static Set_$Border(GameObjectID, borderSize, borderColor, borderType, borderRadius) {
-        GameObjectError(GameObjectID)
+    Set_$Border(GameObjectID, borderSize, borderColor, borderType, borderRadius) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.border = `${borderSize}px ${borderType} ${borderColor}`
         GameObject.style.borderRadius = borderRadius + 'px'
     }
 
-    static Set_$BackGround(GameObjectID, bg) {
-        GameObjectError(GameObjectID)
+    Set_$BackGround(GameObjectID, bg) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.background = bg
     }
 
-    static Set_$Color(GameObjectID, color) {
-        GameObjectError(GameObjectID)
+    Set_$Color(GameObjectID, color) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.color = color
     }
 
-    static Move(GameObjectID, x = 0, y = 0) {
-        GameObjectError(GameObjectID)
+    Move(GameObjectID, x = 0, y = 0) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.left = x + 'px'
         GameObject.style.top = y + 'px'
     }
 
-    static MoveX(GameObjectID, x = 0) {
-        GameObjectError(GameObjectID)
+    MoveX(GameObjectID, x = 0) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.left = x + 'px'
     }
 
-    static MoveY(GameObjectID, y = 0) {
-        GameObjectError(GameObjectID)
+    MoveY(GameObjectID, y = 0) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.top = y + 'px'
     }
 
-    static Create_$Rect(SceneID, GameObjectID, x = 0, y = 0, height = 100, width = 100, borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000') {
-        SceneObjectError(SceneID)
+    Create_$Rect(SceneID, GameObjectID, x = 0, y = 0, height = 100, width = 100, borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000') {
         const SceneObject = document.getElementById(SceneID)
         if (!SceneObject) {
-            console.error(`CherryEngineError: Scene id with "${SceneID}" not found in DOM tree.`)
+            SceneObjectError(SceneID)
         } else {
             const rect = document.createElement('div')
             rect.setAttribute('id', GameObjectID)
@@ -133,9 +167,12 @@ class $CherryEngine {
         }
     }
 
-    static Create_$Circle(SceneID, GameObjectID, x, y, height = 100, width = 100, borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000') {
-        SceneObjectError(SceneID)
+    Create_$Circle(SceneID, GameObjectID, x, y, height = 100, width = 100, borderSize = 1, borderColor = "#000000", borderType = 'solid', background = '#000000') {
         const SceneObject = document.getElementById(SceneID)
+        if (!SceneObject) {
+            SceneObjectError(SceneID)
+            return
+        }
         const circle = document.createElement('div')
         circle.setAttribute('id', GameObjectID)
         const circleID = document.getElementById(GameObjectID)
@@ -151,65 +188,86 @@ class $CherryEngine {
         circle.style.top = y + 'px'
     }
 
-    static getByStaticId(staticID) {
+    getByStaticId(staticID) {
         const GameObject = document.getElementById(atob(staticID))
+        if (!GameObject) {
+            GameObjectError(staticID)
+            return
+        }
         return GameObject
     }
 
-    static Delete_$Object(GameObjectID) {
+    Delete_$Object(GameObjectID) {
         GameObjectError(GameObjectID)
         const GameObject = document.getElementById(GameObjectID)
         if (!GameObject) {
-            console.error(`*GameObject id with "${GameObjectID}" not found in DOM tree.`)
-        } else {
-            GameObject.remove()
+            GameObjectError(GameObjectID)
+            return
         }
+        GameObject.remove()
     }
 
-    static Object_$Rotate(GameObjectID, deg) {
-        GameObjectError(GameObjectID)
+    Object_$Rotate(GameObjectID, deg) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.transform = `rotate(${deg}deg)`
     }
 
-    static Object_$RotateY(GameObjectID, deg) {
-        GameObjectError(GameObjectID)
+    Object_$RotateY(GameObjectID, deg) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.transform = `rotateY(${deg}deg)`
     }
 
-    static Object_$RotateX(GameObjectID, deg) {
-        GameObjectError(GameObjectID)
+    Object_$RotateX(GameObjectID, deg) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.transform = `rotateX(${deg}deg)`
     }
 
-    static Object_$RotateZ(GameObjectID, deg) {
-        GameObjectError(GameObjectID)
+    Object_$RotateZ(GameObjectID, deg) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.transform = `rotateZ(${deg}deg)`
     }
 
-    static Object_$Scale(GameObjectID, size) {
-        GameObjectError(GameObjectID)
+    Object_$Scale(GameObjectID, size) {
         const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
         GameObject.style.transform = `scale(${size})`
     }
 
-    static Object_$SetTransTime(GameObjectID, ms) {
-        GameObjectError(GameObjectID)
-        const GameObject = document.getElementById(GameObjectID)
-        GameObject.style.transitionDuration = `${ms}ms`  
-    }
-
-    static Object_$Layer(GameObjectID, ObjectLayer) {
-        GameObjectError(GameObjectID)
+    Object_$SetTransTime(GameObjectID, ms) {
         const GameObject = document.getElementById(GameObjectID)
         if (!GameObject) {
-            console.error(`CherryEngineError [*GameObjectError]: *GameObject id with "${GameObjectID}" not found in DOM tree.`)
-        } else {
-            GameObject.style.zIndex = ObjectLayer
+            GameObjectError(GameObjectID)
+            return
         }
+        GameObject.style.transitionDuration = `${ms}ms`
+    }
+
+    Object_$Layer(GameObjectID, ObjectLayer) {
+        const GameObject = document.getElementById(GameObjectID)
+        if (!GameObject) {
+            GameObjectError(GameObjectID)
+            return
+        }
+        GameObject.style.zIndex = ObjectLayer
     }
 }
 
